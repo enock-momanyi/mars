@@ -1,0 +1,39 @@
+<div *ngIf='aircraft?.photo_manifest?.photos?.length' class="container">
+<div class="row">
+    <div class="col-sm-12 col-lg-6">
+        <pre></pre>
+        <pre></pre>
+        <table class="table table-info">
+            <tbody>
+                <tr><td>Name</td><td>{{aircraft?.photo_manifest?.name}}</td></tr>
+                <tr><td>Landing Date</td><td>{{aircraft?.photo_manifest?.landing_date}}</td></tr>
+                <tr><td>Launch Date</td><td>{{aircraft?.photo_manifest?.launch_date}}</td></tr>
+                <tr><td>Status</td><td>{{aircraft?.photo_manifest?.status}}</td></tr>
+                <tr><td>Max Sol</td><td>{{aircraft?.photo_manifest?.max_sol}}</td></tr>
+                <tr><td>Max Date</td><td>{{aircraft?.photo_manifest?.max_date}}</td></tr>
+                <tr><td>Total Photos</td><td>{{aircraft?.photo_manifest?.total_photos}}</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- <mr-form [rover] = 'aircraft.photo_manifest.name' [solVal] = 'aircraft.photo_manifest.max_sol'
+         [maxdate] ='aircraft.photo_manifest.max_date' [mindate]= 'aircraft.photo_manifest.landing_date'></mr-form> -->
+         <p>Query by either the Martial Sol or Earth Date</p>
+         <mr-form [rover] = 'aircraft' (afterSubmit) = 'photo=$event'></mr-form>
+    </div>
+    <div class="col-sm-12 col-lg-6">
+        <pre></pre>
+        <pre></pre>
+        <div *ngIf='errorM'>Rover manifest cannot be found at this time!</div>
+        <div *ngIf='photo?.sol'>
+        <table class="table table-info">
+            <tbody>
+                <tr><td>Martian Sol</td><td>{{photo?.sol}}</td></tr>
+                <tr><td>Earth Date</td><td>{{photo?.earth_date}}</td></tr>
+                <tr><td>Photos</td><td>{{photo?.total_photos}}</td></tr>
+                <tr><td>Cameras</td><td><tr class="camera" (click)='onSelect(aircraft?.photo_manifest?.name,photo?.sol,cam)' *ngFor='let cam of photo?.cameras'>
+                    <td>{{cam}}</td></tr></td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
