@@ -6,7 +6,7 @@ import { RoverPhoto, PhotoManifest } from './rover';
   providedIn: 'root'
 })
 export class ManifestService {
-  private API_KEY = '1E6KtvUvZvJUHPhxdMtoEA9cO94JCTjb57aUwBtR';
+  private API_KEY = 'DEMO_KEY';
   constructor(private http: HttpClient) { }
   getDescription(name: string) : Observable<PhotoManifest>{
     const manifestUrl = `https://api.nasa.gov/mars-photos/api/v1/manifests/${name}/?api_key=${this.API_KEY}`
